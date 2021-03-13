@@ -59,6 +59,9 @@ let valorParcial = 0;
 function atualizarCarrinho() {
         let containerCarrinho = document.getElementById('carrinho');
         containerCarrinho.innerHTML = "";
+        
+        let carrinhoCheio = [];
+
         produtos.map ((val)=>{
 
             valorParcial = val.preco*val.quantidade;
@@ -79,16 +82,20 @@ function atualizarCarrinho() {
                     </tboby>
                 </table>
             <div>
-            `;             
-            
-            total = total + valorParcial;            
-
-            }
-
-        let containerTotal= document.getElementById('total');
-        containerTotal.innerHTML = `<p> Total: R$ `+total.toFixed(2)+`</p>`
+            `;                      
+                carrinhoCheio.push(valorParcial);
+            }      
     
     })
+
+    console.log(carrinhoCheio);
+    const total = carrinhoCheio.reduce(function(acumulador, valorAtual){
+            return acumulador + valorAtual;
+    }, 0);
+
+    let containerTotal= document.getElementById('total');
+    containerTotal.innerHTML = `<p> Total: R$ `+total.toFixed(2)+`</p>`
+
 }
 
 
@@ -97,6 +104,7 @@ function atualizarCarrinho() {
 
     let total = 0;
 
+    function adicionarAoCarrinho(){
     for (let i = 0; i <links.length; i++){
         links[i].addEventListener("click", function(){
             let adicionar = this.getAttribute ('adicionar');
@@ -105,5 +113,9 @@ function atualizarCarrinho() {
         })
               
     }
+}
+
+adicionarAoCarrinho();
+    
 
     
