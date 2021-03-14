@@ -89,6 +89,7 @@ h2 {
     text-decoration: none;
     color: #F7B600;
     background-color: #D40007;
+    border-radius: 4px;
     text-align: center;
     display: block;
     padding: 5px 0;
@@ -98,7 +99,7 @@ h2 {
 }
 
 .produto a:hover {
-    opacity: 0.5;
+    opacity: 0.71;
 }
 
 .elementos-carrinho {
