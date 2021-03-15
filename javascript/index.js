@@ -1,4 +1,4 @@
-const produtos = [
+    produtos = [
     { 
         img: "img/hotdog.png",
         codigo: 0,
@@ -34,49 +34,48 @@ const produtos = [
         preco: 1.5,
         quantidade: 0  
     }
-]
+    ]
 
-function inicializarLoja() {
+    function inicializarLoja() {
         let containerProdutos = document.getElementById('produtos');
-        produtos.map ((val)=>{
+        produtos.map ((produto)=>{
             containerProdutos.innerHTML+= `
     
             <div class="produto">
-                <img src="`+val.img+`" />
-                <p>`+val.nome+`</p>
-                <p> R$`+val.preco.toFixed(2)+`</p>
-                <a adicionar="`+val.codigo+`" href="#">Adicionar ao carrinho!</a>                
+                <img src="`+produto.img+`" />
+                <p>`+produto.nome+`</p>
+                <p> R$`+produto.preco.toFixed(2)+`</p>
+                <a adicionar="`+produto.codigo+`" href="#">Adicionar ao carrinho!</a>                
             </div>
             `;
         })
-}
+    }
 
 
-inicializarLoja();
+    inicializarLoja();
 
-let valorParcial = 0;
+    let valorParcial = 0;
 
-function atualizarCarrinho() {
+    function atualizarCarrinho() {
         let containerCarrinho = document.getElementById('carrinho');
         containerCarrinho.innerHTML = "";
         
         let carrinhoCheio = [];
 
-        produtos.map ((val)=>{
+        produtos.map ((produto)=>{
 
-            valorParcial = val.preco*val.quantidade;
+            valorParcial = produto.preco*produto.quantidade;
             
-            if(val.quantidade > 0) {
-            containerCarrinho.innerHTML+= `
-        
+            if(produto.quantidade > 0) {
+            containerCarrinho.innerHTML+= `        
+                        
             <div class="elementos-carrinho">
-
-                <table>
+                <table>                   
                     <tboby>
                         <tr>
-                          <td><img src="`+val.img+`" /></td>
-                          <td>`+val.nome+` </td>
-                          <td>| Qtd: `+val.quantidade+` |</td>
+                          <td><img src="`+produto.img+`" /></td>
+                          <td>`+produto.nome+` </td>
+                          <td>| Qtd: `+produto.quantidade+` |</td>
                           <td>R$ `+valorParcial.toFixed(2)+`</td>
                         </tr>
                     </tboby>
@@ -86,17 +85,15 @@ function atualizarCarrinho() {
                 carrinhoCheio.push(valorParcial);
             }      
     
-    })
+            })
 
-    console.log(carrinhoCheio);
-    const total = carrinhoCheio.reduce(function(acumulador, valorAtual){
-            return acumulador + valorAtual;
-    }, 0);
+            const total = carrinhoCheio.reduce(function(acumuladorValorParcial, valorAtual){
+            return acumuladorValorParcial + valorAtual;
+            }, 0);
 
-    let containerTotal= document.getElementById('total');
-    containerTotal.innerHTML = `<p> Total: R$ `+total.toFixed(2)+`</p>`
-
-}
+            let containerTotal= document.getElementById('total');
+            containerTotal.innerHTML = `<p> Total: R$ `+total.toFixed(2)+`</p>`
+    }
 
 
 
@@ -105,17 +102,17 @@ function atualizarCarrinho() {
     let total = 0;
 
     function adicionarAoCarrinho(){
-    for (let i = 0; i <links.length; i++){
-        links[i].addEventListener("click", function(){
+        for (let i = 0; i <links.length; i++){
+            links[i].addEventListener("click", function(){
             let adicionar = this.getAttribute ('adicionar');
             produtos[adicionar].quantidade++;
             atualizarCarrinho();
-        })
+            })
               
+        }
     }
-}
 
-adicionarAoCarrinho();
+    adicionarAoCarrinho();
     
 
     
