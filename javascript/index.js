@@ -1,4 +1,4 @@
-    produtos = [
+    const produtos = [
     { 
         img: "img/hotdog.png",
         codigo: 0,
